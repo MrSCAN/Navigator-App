@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class NewPage extends StatelessWidget {
+class Page2 extends StatelessWidget {
   final String title;
 
-  NewPage({Key key, this.title});
+  Page2({Key key, this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class NewPage extends StatelessWidget {
       ),
       body: new Container(
         child: new Center(
-          child: new Text('Page One'),
+          child: new Text('Page Two'),
         ),
       ),
     );
