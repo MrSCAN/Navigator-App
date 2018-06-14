@@ -39,13 +39,22 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text('Drawer App'),
+        title: new Text('Inbox'),
         elevation: defaultTargetPlatform == TargetPlatform.android ? 0.0 : 0.0,
+        backgroundColor: Colors.red[500],
+        actions: <Widget>[
+          new Icon(Icons.search),
+        ],
       ),
       drawer: new Drawer(
         child: new ListView(
           children: <Widget>[
             new UserAccountsDrawerHeader(
+              decoration: new BoxDecoration(
+                image: new DecorationImage(image: new AssetImage("images/drawer1.jpg"),
+                  fit: BoxFit.cover,
+                ),
+              ),
               accountName: new Text('Chinonso Ngwu'),
               accountEmail: new Text('cngwu@seamfix.com'),
               currentAccountPicture: new CircleAvatar(
@@ -65,34 +74,36 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
             new ListTile(
-              title: new Text('View Status'),
-              trailing: new Icon(Icons.navigate_next),
+              leading: new Icon(Icons.store),
+              title: new Text('All inboxes'),
               onTap: () => Navigator.of(context).pushNamed('/a'),
             ),
+            new Divider(),
             new ListTile(
-              title: new Text('Settings'),
-              trailing: new Icon(Icons.settings),
+              leading: new Icon(Icons.inbox),
+              title: new Text('Inbox'),
+              trailing: new Text("99+"),
+              enabled: true,
             ),
-            new Divider(
-              height: 30.0,
-              color: Colors.green,
-            ),
+            new Divider(),
+            new Text('     All labels'),
             new ListTile(
-              title: new Text('Close'),
-              trailing: new Icon(
-                Icons.close,
-                color: Colors.red,
-              ),
-              onTap: () {
-                Navigator.pop(context);
-              },
+              leading: new Icon(Icons.star),
+              title: new Text('Starred'),
+              trailing: new Text("7"),
+              enabled: true,
             ),
             new ListTile(
-              title: new Text('page 2'),
-              trailing: new Icon(
-                Icons.navigate_next,
-                color: Colors.black54,
-              ),
+              leading: new Icon(Icons.access_time),
+              title: new Text('Snoozed'),
+              trailing: new Text("1"),
+              enabled: true,
+            ),
+
+            new ListTile(
+              leading: new Icon(Icons.send),
+              title: new Text('Sent'),
+              trailing: new Text('2'),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.of(context).push(new MaterialPageRoute(
@@ -105,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: new Container(
         child: new Center(
-          child: new Text("Home Page"),
+          child: new Text("Your Inbox is empty"),
         ),
       ),
     );

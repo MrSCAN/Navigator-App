@@ -1,19 +1,122 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:navigationanddrawerapp/new_page.dart';
+import 'package:navigationanddrawerapp/page_two.dart';
 
-class Page2 extends StatelessWidget {
-  final String title;
+void main() => runApp(new MyApp());
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: new ThemeData(
+          primarySwatch: Colors.green,
+          primaryColor: defaultTargetPlatform == TargetPlatform.iOS
+              ? Colors.grey[50]
+              : null,
+        ),
+        home: Page2(title: 'Sent Mail'),
+        routes: <String, WidgetBuilder>{
+          "/a": (BuildContext context) => new NewPage(title: "Status"),
+        });
+  }
+}
+
+class Page2 extends StatefulWidget {
+  var title;
 
   Page2({Key key, this.title});
 
   @override
+  _Page2State createState() => _Page2State();
+}
+
+class _Page2State extends State<Page2> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return new Scaffold(
       appBar: new AppBar(
-        title: new Text(title),
+        title: new Text('Sent'),
+        elevation: defaultTargetPlatform == TargetPlatform.android ? 0.0 : 0.0,
+        backgroundColor: Colors.red[500],
+        actions: <Widget>[
+          new Icon(Icons.search),
+        ],
+      ),
+      drawer: new Drawer(
+        child: new ListView(
+          children: <Widget>[
+            new UserAccountsDrawerHeader(
+              decoration: new BoxDecoration(
+                image: new DecorationImage(image: new AssetImage("images/drawer1.jpg"),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              accountName: new Text('Chinonso Ngwu'),
+              accountEmail: new Text('cngwu@seamfix.com'),
+              currentAccountPicture: new CircleAvatar(
+                backgroundColor: Colors.teal,
+                child: new Text(
+                  'C',
+                  style: new TextStyle(
+                    fontSize: 30.0,
+                  ),
+                ),
+              ),
+              otherAccountsPictures: <Widget>[
+                new CircleAvatar(
+                  child: new Text('N'),
+                  backgroundColor: Colors.blue,
+                ),
+              ],
+            ),
+            new ListTile(
+              leading: new Icon(Icons.store),
+              title: new Text('All inboxes'),
+              onTap: () => Navigator.of(context).pushNamed('/a'),
+            ),
+            new Divider(),
+            new ListTile(
+              leading: new Icon(Icons.inbox),
+              title: new Text('Inbox'),
+              trailing: new Text("99+"),
+              enabled: true,
+            ),
+            new Divider(),
+            new Text('     All labels'),
+            new ListTile(
+              leading: new Icon(Icons.star),
+              title: new Text('Starred'),
+              trailing: new Text("7"),
+              enabled: true,
+            ),
+            new ListTile(
+              leading: new Icon(Icons.access_time),
+              title: new Text('Snoozed'),
+              trailing: new Text("1"),
+              enabled: true,
+            ),
+
+            new ListTile(
+              leading: new Icon(Icons.send),
+              title: new Text('Sent'),
+              trailing: new Text('2'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                    new Page2(title: "Inbox")));
+              },
+            ),
+          ],
+        ),
       ),
       body: new Container(
         child: new Center(
-          child: new Text('Page Two'),
+          child: new Text("No Sent Mail"),
         ),
       ),
     );
