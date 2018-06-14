@@ -114,6 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+      floatingActionButton: new FloatingActionButton(onPressed: ()=>{},child: new Icon(Icons.edit),backgroundColor: Colors.red,),
       body: new Container(
         child: new Center(
           child: new Text("Your Inbox is empty"),
