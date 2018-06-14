@@ -51,7 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             new UserAccountsDrawerHeader(
               decoration: new BoxDecoration(
-                image: new DecorationImage(image: new AssetImage("images/drawer1.jpg"),
+                image: new DecorationImage(
+                  image: new AssetImage("images/drawer1.jpg"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -99,7 +100,6 @@ class _MyHomePageState extends State<MyHomePage> {
               trailing: new Text("1"),
               enabled: true,
             ),
-
             new ListTile(
               leading: new Icon(Icons.send),
               title: new Text('Sent'),
@@ -114,7 +114,11 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: new FloatingActionButton(onPressed: ()=>{},child: new Icon(Icons.edit),backgroundColor: Colors.red,),
+      floatingActionButton: new FloatingActionButton(
+        onPressed: () => {},
+        child: new Icon(Icons.edit),
+        backgroundColor: Colors.red,
+      ),
       body: new Container(
         child: new Center(
           child: new Text("Your Inbox is empty"),
